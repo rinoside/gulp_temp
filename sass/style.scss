@@ -1,0 +1,108 @@
+/*RESET
+----------------------------------------------*/
+html, body, div, span, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+abbr, address, cite, code,
+del, dfn, em, img, ins, kbd, q, samp,
+small, strong, sub, sup, var,
+b, i,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section, summary,
+time, mark, audio, video {
+    margin:0;
+    padding:0;
+    border:0;
+    outline:0;
+    font-size:100%;
+    vertical-align:baseline;
+    background:transparent;
+}
+
+* {
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+         -o-box-sizing: border-box;
+        -ms-box-sizing: border-box;
+            box-sizing: border-box;
+}
+
+
+article,aside,details,figcaption,figure,
+footer,header,hgroup,menu,nav,section { 
+	display:block;
+}
+
+ul,ol {
+    list-style:none;
+}
+
+//sass 
+%clearfix {
+	overflow: hidden;
+	position: relative;
+	*zoom: 1;
+}
+%fontfamily{
+	font-family: 'Crimson Text', serif;
+}
+
+$green:#00593a;
+$lgreen:#aabe16;
+@mixin sec_h2{
+	font-size: 18px;// test
+}
+
+/*sprite style
+----------------------------------------------*/
+@import "sprite";
+i {
+    @include sprite($sprite-hogehoge);
+    display: block;
+}
+
+/*---------------------------------------
+mobile point
+---------------------------------------*/
+@media (min-width: 768px) {
+}
+@media screen and (max-width: 767px){
+}
+@media (max-width: 1050px) and (min-width: 768px){
+}
+
+
+/*STYLE
+----------------------------------------------*/
+/*common
+----------------------------------------------*/
+html{
+	background: #D3CDBD;
+}
+body {
+	font-family: "游ゴシック", YuGothic, "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
+	line-height: 1.4;
+	color: #333A2C;
+	background-color: #FFF;
+}
+a{
+	text-decoration: none;
+	color: #333A2C;
+	font-weight: normal;
+}
+section .centerwrap{
+	width: 960px;
+	margin: 0 auto;
+	padding-bottom: 20px;
+	@extend %clearfix;
+}
+
+
+
+
+
+
+
+
