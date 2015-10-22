@@ -4,8 +4,8 @@
 ## npmパッケージインストール
 
 ```
-$ cd projectName
-$ sudo npm install
+$ cd projectName　※プロジェクトフォルダへ移動
+$ sudo npm install　※パッケージインストール
 ```
 
 
@@ -20,7 +20,7 @@ $ gulp
 ```
 $ gulp sprite
 ```
-style.scssで「@importで_sprite.scss」とmixinを呼び出し。
+style.scssに@importで_sprite.scssとmixinを呼び出し。
 
 ## ejs使う場合
 
@@ -35,11 +35,21 @@ html出力先→/ ※ディレクトリ直下
 ```
 ├── app
 │   └── dev
-│   　   └── ejs（index.ejs など。.htmlはディレクトリ直下に生成）│├── images
-│   └── sprite （スプライト用png）│├── node_modules
-│   └── （パッケージ各種）│├── css
-│├── sass
-│├── gulpfile.js│├── package.json
+│   　   └── ejs（index.ejs など。.htmlはディレクトリ直下に生成）
+│
+├── images
+│   └── sprite （スプライト用png）
+│
+├── node_modules
+│   └── （パッケージ各種）
+│
+├── css
+│
+├── sass
+│
+├── gulpfile.js
+│
+├── package.json
 │
 └── README.md
 ```
