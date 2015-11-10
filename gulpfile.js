@@ -5,10 +5,12 @@ var gulp = require("gulp");
 var sass = require("gulp-sass");
 // ベンダープレフィクス自動付与
 var autoprefixer = require("gulp-autoprefixer");
+// スタイルガイド生成　frontnote
+// var frontnote = require("gulp-frontnote");
 // js圧縮
 var uglify = require("gulp-uglify");
 // ブラウザへの反映自動化browser-syncを使用。
-// ファイルが変更されると画面を更新するだけでなく、スクロールやinputへの入力を全てのブラウザで同期。
+// ファイルが変更されると画面を更新するだけでなく、スクロールやinputへの入力を全てのブラウザで同期してくれます。
 var browser = require("browser-sync");
 // エラーハンドリング
 var plumber = require("gulp-plumber");
@@ -17,14 +19,19 @@ var ejs = require('gulp-ejs');
 // スプライト画像
 var spritesmith = require('gulp.spritesmith');
 
+
 gulp.task("sass", function() {
     gulp.src("sass/**/*scss")
         .pipe(plumber())
+        // .pipe(frontnote({
+        //     css: '../css/style.css'
+        // }))
         .pipe(sass())
         .pipe(autoprefixer())
         .pipe(gulp.dest("./css"))
         .pipe(browser.reload({stream:true}))
 });
+
  
 gulp.task("js", function() {
     gulp.src(["js/**/*.js","!js/min/**/*.js"])
@@ -34,6 +41,7 @@ gulp.task("js", function() {
         .pipe(browser.reload({stream:true}))
 });
 
+
 // ブラウザへの反映自動化
 gulp.task("server", function() {
     browser({
@@ -42,6 +50,7 @@ gulp.task("server", function() {
         }
     });
 });
+
 
 // 自動実行
 gulp.task("default",['server'], function() {
