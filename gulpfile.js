@@ -1,9 +1,8 @@
 var gulp = require("gulp");
 
-
 // sassファイル
 var sass = require("gulp-sass");
-// ベンダープレフィクス自動付与
+// ベンダープレフィクス自動付与→勝手に消されるのでいったん停止
 var autoprefixer = require("gulp-autoprefixer");
 // スタイルガイド生成　frontnote
 // var frontnote = require("gulp-frontnote");
@@ -14,30 +13,22 @@ var uglify = require("gulp-uglify");
 var browser = require("browser-sync");
 // エラーハンドリング
 var plumber = require("gulp-plumber");
-// ejs
-var ejs = require('gulp-ejs');
-// スプライト画像
-var spritesmith = require('gulp.spritesmith');
-
-
+ 
 gulp.task("sass", function() {
     gulp.src("sass/**/*scss")
         .pipe(plumber())
-        // .pipe(frontnote({
-        //     css: '../css/style.css'
-        // }))
         .pipe(sass())
         .pipe(autoprefixer())
-        .pipe(gulp.dest("./css"))
+        .pipe(gulp.dest("./assets/stylesheets"))
         .pipe(browser.reload({stream:true}))
 });
 
  
 gulp.task("js", function() {
-    gulp.src(["js/**/*.js","!js/min/**/*.js"])
+    gulp.src(["assets/javascripts/**/*.js","!assets/javascripts/min/**/*.js"])
         .pipe(plumber())
         .pipe(uglify())
-        .pipe(gulp.dest("./js/min"))
+        .pipe(gulp.dest("./assets/javascripts/min"))
         .pipe(browser.reload({stream:true}))
 });
 
@@ -51,37 +42,8 @@ gulp.task("server", function() {
     });
 });
 
-
 // 自動実行
 gulp.task("default",['server'], function() {
-    gulp.watch(["js/**/*.js","!js/min/**/*.js"],["js"]);
+    gulp.watch(["assets/javascripts/**/*.js","!assets/javascripts/min/**/*.js"],["js"]);
     gulp.watch("sass/**/*.scss",["sass"]);
-});
-
-// ejs
-gulp.task("ejs", function() {
-    gulp.src(
-        ["app/dev/ejs/**/*.ejs",'!' + "app/dev/ejs/**/_*.ejs"] //注1
-    )
-        .pipe(ejs())
-        .pipe(gulp.dest("./")) //注2
-});
-
-// スプライト
-gulp.task('sprite', function () {
-  var spriteData = gulp.src('images/*.png').pipe(spritesmith({
-    imgName: 'sprite.png',
-    cssName: '_sprite.scss',
-    imgPath: '../images/sprite/sprite.png',
-    cssFormat: 'scss', 
-    cssVarMap: function (sprite) {
-      sprite.name = 'sprite-' + sprite.name;
-    }
-  }));
-   
-  spriteData.img
-    .pipe(gulp.dest('images/sprite/'));
- 
-  spriteData.css
-    .pipe(gulp.dest('sass/'));
 });
